@@ -9,9 +9,14 @@
     "lint": "eslint"
   },
   "dependencies": {
+    "@clerk/nextjs": "^6.36.5",
     "@radix-ui/react-slot": "^1.2.4",
+    "@stream-io/node-sdk": "^0.7.28",
+    "@stream-io/video-react-sdk": "^1.29.2",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
+    "convex": "^1.31.2",
+    "firebase": "^12.7.0",
     "lucide-react": "^0.562.0",
     "next": "16.1.0",
     "react": "19.2.3",

@@ -1,13 +1,17 @@
-import { Button } from '@/components/ui/button'
 import React from 'react'
+import { SignedIn, SignedOut, SignInButton, SignUpButton, UserButton } from '@clerk/nextjs'
 
-function page() {
+export default function Home() {
   return (
-    <div>
-      <h1>Welcome to the Home Page</h1>
-      <Button> sign in</Button>
+    <div className="m-10">
+      {/* <SignedOut>
+        <SignInButton />
+      </SignedOut>
+      <SignedIn>
+        <UserButton />
+      </SignedIn> */}
+
+      <h1 className="text-3xl font-bold underline">Hello, Clerk!</h1>
     </div>
   )
 }
-
-export default page
