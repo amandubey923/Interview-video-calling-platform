@@ -8,7 +8,7 @@ import { Button } from "./ui/button";
 function MeetingSetup({ onSetupComplete }: { onSetupComplete: () => void }) {
   const [isCameraDisabled, setIsCameraDisabled] = useState(true);
   const [isMicDisabled, setIsMicDisabled] = useState(false);
-
+  
   const call = useCall();
 
   if (!call) return null;
@@ -74,7 +74,7 @@ function MeetingSetup({ onSetupComplete }: { onSetupComplete: () => void }) {
                     </div>
                     <Switch
                       checked={!isCameraDisabled}
-                      onCheckedChange={(checked) => setIsCameraDisabled(!checked)}
+                      onCheckedChange={(checked: any) => setIsCameraDisabled(!checked)}
                     />
                   </div>
 
@@ -93,7 +93,7 @@ function MeetingSetup({ onSetupComplete }: { onSetupComplete: () => void }) {
                     </div>
                     <Switch
                       checked={!isMicDisabled}
-                      onCheckedChange={(checked) => setIsMicDisabled(!checked)}
+                      onCheckedChange={(checked: any) => setIsMicDisabled(!checked)}
                     />
                   </div>
 
