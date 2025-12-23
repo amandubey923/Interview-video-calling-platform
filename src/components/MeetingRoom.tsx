@@ -1,3 +1,7 @@
+"use client"
+
+import { useState } from "react"
+import { useRouter } from "next/navigation"
 import {
   CallControls,
   CallingState,
@@ -5,42 +9,43 @@ import {
   PaginatedGridLayout,
   SpeakerLayout,
   useCallStateHooks,
-} from "@stream-io/video-react-sdk";
-import { LayoutListIcon, LoaderIcon, UsersIcon } from "lucide-react";
-import { useRouter } from "next/navigation";
-import { useState } from "react";
-import { ResizableHandle, ResizablePanel, ResizablePanelGroup } from "./ui/resizable";
+} from "@stream-io/video-react-sdk"
+import {
+  ResizablePanelGroup,
+  ResizablePanel,
+  ResizableHandle,
+} from "./ui/resizable"
+import CodeEditor from "./CodeEditor"
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuTrigger,
-} from "./ui/dropdown-menu";
-import { Button } from "./ui/button";
-import EndCallButton from "./EndCallButton";
-import CodeEditor from "./CodeEditor";
+} from "./ui/dropdown-menu"
+import { Button } from "./ui/button"
+import EndCallButton from "./EndCallButton"
+import { LayoutListIcon, LoaderIcon, UsersIcon } from "lucide-react"
 
 function MeetingRoom() {
-  const router = useRouter();
-  const [layout, setLayout] = useState<"grid" | "speaker">("speaker");
-  const [showParticipants, setShowParticipants] = useState(false);
-  const { useCallCallingState } = useCallStateHooks();
-
-  const callingState = useCallCallingState();
+  const router = useRouter()
+  const [layout, setLayout] = useState<"grid" | "speaker">("speaker")
+  const [showParticipants, setShowParticipants] = useState(false)
+  const { useCallCallingState } = useCallStateHooks()
+  const callingState = useCallCallingState()
 
   if (callingState !== CallingState.JOINED) {
     return (
       <div className="h-96 flex items-center justify-center">
         <LoaderIcon className="size-6 animate-spin" />
       </div>
-    );
+    )
   }
 
   return (
     <div className="h-[calc(100vh-4rem-1px)]">
-      <ResizablePanelGroup direction="horizontal">
+      <ResizablePanelGroup orientation="horizontal">
+        {/* VIDEO PANEL */}
         <ResizablePanel defaultSize={35} minSize={25} maxSize={100} className="relative">
-          {/* VIDEO LAYOUT */}
           <div className="absolute inset-0">
             {layout === "grid" ? <PaginatedGridLayout /> : <SpeakerLayout />}
 
@@ -53,7 +58,6 @@ function MeetingRoom() {
           </div>
 
           {/* VIDEO CONTROLS */}
-
           <div className="absolute bottom-4 left-0 right-0">
             <div className="flex flex-col items-center gap-4">
               <div className="flex items-center gap-2 flex-wrap justify-center px-4">
@@ -92,13 +96,16 @@ function MeetingRoom() {
           </div>
         </ResizablePanel>
 
+        {/* HANDLE */}
         <ResizableHandle withHandle />
 
+        {/* CODE EDITOR PANEL */}
         <ResizablePanel defaultSize={65} minSize={25}>
           <CodeEditor />
         </ResizablePanel>
       </ResizablePanelGroup>
     </div>
-  );
+  )
 }
-export default MeetingRoom;
+
+export default MeetingRoom
