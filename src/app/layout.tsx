@@ -4,6 +4,7 @@ import "./globals.css";
 import { RedirectToSignIn, SignedIn, SignedOut } from "@clerk/nextjs";
 import { ConvexClerkProvider } from "@/components/providers/ConvexClerkProvider";
 import Navbar from "@/components/Navbar";
+import Footer from "@/components/footer";
 import { ThemeProvider } from "@/components/providers/ThemeProvider";
 import { Toaster } from "react-hot-toast";
 
@@ -28,9 +29,17 @@ export default function RootLayout({
             disableTransitionOnChange
           >
             <SignedIn>
-              <div className="min-h-screen">
+              {/* FLEX COLUMN LAYOUT */}
+              <div className="flex min-h-screen flex-col">
                 <Navbar />
-                <main className="px-4 sm:px-6 lg:px-8">{children}</main>
+
+                {/* MAIN CONTENT */}
+                <main className="flex-1 px-4 sm:px-6 lg:px-8">
+                  {children}
+                </main>
+
+                {/* FOOTER */}
+                <Footer />
               </div>
             </SignedIn>
 
@@ -38,6 +47,7 @@ export default function RootLayout({
               <RedirectToSignIn />
             </SignedOut>
           </ThemeProvider>
+
           <Toaster />
         </body>
       </html>
